@@ -1,0 +1,7 @@
+.coverage
+**/.idea
+*.pyc
+**/__pycache__
+**/data
+vim.*
+**/sandbox.py
