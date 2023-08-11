@@ -18,24 +18,29 @@ import os
 #                                FUNCTION                                     #
 ###############################################################################
 
-def rearrangeDico(csv_file):
-    with open(csv_file, 'r') as file:
-        dictreader = csv.DictReader(file, delimiter=';')
-        for row in dictreader:
-            print(row)
-        # each row is a list
-        # data = list(reader)
+# def rearrangeDico(csv_file):
+#     with open(csv_file, 'r') as file:
+#         dictreader = csv.DictReader(file, delimiter=';')
+#         for row in dictreader:
+#             print(row)
+#         # each row is a list
+#         # data = list(reader)
 
 def csv_to_html(csv_file, html_file, legendsDico):
     with open(csv_file, 'r') as file:
-        # dictreader = csv.DictReader(file, delimiter=';')
-        # rows = [row for row in dictreader]
+        
         reader = csv.reader(file, delimiter=';')
-        # for row in reader:
-        #     print(row)
+            
         # each row is a list
         data = list(reader)
-        warningsindexList = [4,5,6,7,14,15,16,17,18]
+        
+        # Prints
+        # print(f"-- PRINT -- \nhtml_generation main -> list(reader) -> {data} \n")
+        
+        # warnings index list generation
+        warningsnamesList = [elem for elem in data[0] if 'timeout' in elem]
+        warningsnamesList += ['tra. w1', 'tra. w2', 'tra. w3', 'tra. others', 'sim. w1', 'sim. w2', 'sim. w3', 'sim. others']
+        warningsindexList = [data[0].index(elem) for elem in warningsnamesList if elem in data[0]]
 
     with open(html_file, 'w') as file:
         file.write('<html>\n')
@@ -55,6 +60,7 @@ def csv_to_html(csv_file, html_file, legendsDico):
         file.write('</head>\n')
         file.write('<body>\n')
         
+        # Legend
         file.write('<p>\n')
         for key, value in legendsDico.items():
             ligne_html = f"{key} : {value}<br>\n"
@@ -97,6 +103,8 @@ def csv_to_html(csv_file, html_file, legendsDico):
 def main():
     # Initialization
     os.chdir(path.join(repo_path,r'devtest_thermosyspro\Dev_TestSuite\data'))
+    
+    # Legend
     frequentwarningList = ['Conflicting start values', 'The following parameters with fixed = false also have a binding', \
                         'Some variables are iteration variables of the initialization problem: but they are not given any explicit start values. Zero will be used.']
     warningnames = ['w1', 'w2', 'w3']
@@ -106,13 +114,13 @@ def main():
     csv_to_html('html_reordered_csv.csv', 'logfile_html.html', legendsDico)
     
     # Remove old .csv file
-    try:
-        os.remove('logfile_csv.csv')
-        os.remove('html_csv.csv')
+    # try:
+    #     os.remove('logfile_csv.csv')
+    #     os.remove('html_csv.csv')
         
-    except OSError as err:
-        print(f'html_generation -> OSError : {err}')
-        return -1
+    # except OSError as err:
+    #     print(f'html_generation -> OSError : {err}')
+    #     return -1
     
     return 0
 

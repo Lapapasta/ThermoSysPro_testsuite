@@ -51,6 +51,7 @@ def main():
     IO_Manager.getModel(path.join(repo_path,r'devtest_thermosyspro\ThermoSysPro'), 'Examples')
     
     # Model number reduction for test
+    # IO_Manager.getModel(path.join(repo_path,r'devtest_thermosyspro\ThermoSysPro\Examples\SimpleExamples'), 'Examples')
     # newmodel4simu = [values for values in IO_Manager.model4simu.values()][0][2:8]
     # IO_Manager.model4simu[path.join(repo_path,r'devtest_thermosyspro\ThermoSysPro\Examples\SimpleExamples')] = newmodel4simu
     

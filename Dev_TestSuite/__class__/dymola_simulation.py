@@ -3,8 +3,8 @@
 #                                CONFIG.                                      #
 ###############################################################################
 
-import sys
-sys.path.insert(1,r'C:\Users\H13483\Documents\devtest_thermosyspro\Dev_TestSuite\__script__')
+import sys, os
+sys.path.insert(1,os.getcwd())
 from config import *
 
 ###############################################################################

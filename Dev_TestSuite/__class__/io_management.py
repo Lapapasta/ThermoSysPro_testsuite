@@ -272,8 +272,9 @@ class IO_Management(object):
         os.chdir(wdir)
         fieldnames = [key for key in rowsList[0][0].keys()]
         
-        print(f"-- PRINT -- \nio_management.py csvCompact -> rowsList -> {rowsList}\n")
-        print(f"-- PRINT -- \nio_management.py csvCompact -> fieldnames -> {fieldnames}\n")
+        # Prints
+        # print(f"-- PRINT -- \nio_management.py csvCompact -> rowsList -> {rowsList}\n")
+        # print(f"-- PRINT -- \nio_management.py csvCompact -> fieldnames -> {fieldnames}\n")
         
         # Write the scrapped rows in a new .csv file 
         with open('logfile_csv.csv', "a", newline="") as csvfile:
@@ -281,7 +282,10 @@ class IO_Management(object):
             writer.writeheader()
             for rows in rowsList:
                 for row in rows:
-                    writer.writerow(row)
+                    try:
+                        writer.writerow(row)
+                    except Exception as err: 
+                        print(f'csvCompact -> Exception : {err}')
         csvfile.close()
                     
         # Create html_csv file as logfile_csv file transposed
@@ -296,10 +300,16 @@ class IO_Management(object):
         
         # Fieldnames reorder
         print(f"-- PRINT -- \nio_management.py csvCompact -> fieldnames -> {fieldnames}\n")
+        if 'check' in fieldnames:
+            check_index = fieldnames.index('check')
+        
+        if 'translate' in fieldnames:
+            translate_index = fieldnames.index('translate')
+
         newfieldnames = []
-        newfieldnames = fieldnames[0:2]
-        newfieldnames += fieldnames[13:]
-        newfieldnames += fieldnames[2:13]
+        newfieldnames = fieldnames[0:check_index + 1]
+        newfieldnames += fieldnames[translate_index:]
+        newfieldnames += fieldnames[check_index + 1:translate_index]
         print(f"-- PRINT -- \nio_management.py csvCompact -> newfieldnames -> {newfieldnames}\n")
         
         # Columns reorder
