@@ -19,7 +19,7 @@ import re
 import json
 import time
 
-sys.path.insert(1,r'C:\Program Files\Dymola 2021x\Modelica\Library\python_interface\dymola.egg')
+sys.path.insert(1,dymola_egg)
 from dymola.dymola_interface import DymolaInterface
 from dymola.dymola_exception import DymolaException
 

@@ -266,7 +266,7 @@ class IO_Management(object):
                         with open(f'{filename}', newline="") as csvfile:
                             reader = csv.DictReader(csvfile, delimiter=';')
                             rowsList.append([row for row in reader])
-        csvfile.close()
+        #csvfile.close()
         
         # Initialization
         os.chdir(wdir)
@@ -286,7 +286,7 @@ class IO_Management(object):
                         writer.writerow(row)
                     except Exception as err: 
                         print(f'csvCompact -> Exception : {err}')
-        csvfile.close()
+        #csvfile.close()
                     
         # Create html_csv file as logfile_csv file transposed
         pd.read_csv('logfile_csv.csv', sep = ';', header=None).T.to_csv('html_csv.csv', sep = ';', header=False, index=False)
@@ -389,7 +389,7 @@ class IO_Management(object):
                     print(f'There is a {name}.csv file, putting in data...')
                 
                 writer.writerow(dico)
-                csvfile.close()
+                #csvfile.close()
             
             return True
         
