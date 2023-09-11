@@ -42,18 +42,18 @@ def main():
         print('still progress..')
     
     # Main function call
-    # clean_all.main()
-    # check.main()
-    # translate.main()
-    # simulation.main()
-    # referencefile_generation.main()
+    clean_all.main()
+    check.main()
+    translate.main()
+    simulation.main()
+    referencefile_generation.main()
         
     # Csv file generation
-    # IO_Manager = IO_Management()
-    # IO_Manager.csvCompact()
+    IO_Manager = IO_Management()
+    IO_Manager.csvCompact()
     
     # HTML generation
-    # html_generation.main()
+    html_generation.main()
     
     return 0
     
